@@ -46,4 +46,5 @@ public class MealSet{
     }
     
     public double getTotalAmount(){return this.totalAmount;}
+
 }
