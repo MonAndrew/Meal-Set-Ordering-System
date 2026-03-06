@@ -1,4 +1,3 @@
 # Meal-Set-Ordering-System
 
-where to makita, katong murag comments² bato
-tabang bro
+An application that is a terminal-based Meal Ordering System designed using Java to manage multiple food orders, meal selections, beverages, and sides.
