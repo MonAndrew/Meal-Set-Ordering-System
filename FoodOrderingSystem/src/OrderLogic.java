@@ -1,16 +1,30 @@
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
-public class App {
-    public static void main(String[] args) throws Exception {
+public class OrderLogic {
+    
+    private List<MealSet> mealSetList;
+
+    public OrderLogic() {
+        this.mealSetList = new ArrayList<>();
+    }
+
+    public void launch(){
+        
         DecimalFormat df = new DecimalFormat("#,###.00");
         MealSet[] mealset = new MealSet[4];
         UserInput userIn = new UserInput();
+
         boolean addOrderYORN = true;
         int orderNum = 0;
         double totalAmount = 0;
 
+        //GUI gui = new GUI(800, 1200);
+        //gui.setupGUI();
+        
         while(addOrderYORN) {
-            addOrderYORN = userIn.addOrder(4);
+            addOrderYORN = userIn.checkYesOrNo();
             if(!addOrderYORN) break;
 
             System.out.println("\n\t\t   Order Number #"+(orderNum+1));
@@ -18,6 +32,11 @@ public class App {
             mealset[orderNum].addMeals();
             mealset[orderNum].addDrinks();
             mealset[orderNum].addSides();
+
+            //arrayList
+            //addMealSet(new MealSet());
+
+
             System.out.println("Total: "+mealset[orderNum].getTotalAmount());
             totalAmount += mealset[orderNum].getTotalAmount(); 
 
@@ -29,6 +48,13 @@ public class App {
             mealset[i].displayOrder();
         }
         System.out.println("Total Amount: "+ df.format(totalAmount));
+            
 
+        //System.out.println("Hello");
     }
+
+    public void addMealSet(MealSet mealset){
+        this.mealSetList.add(mealset);
+    }
+
 }

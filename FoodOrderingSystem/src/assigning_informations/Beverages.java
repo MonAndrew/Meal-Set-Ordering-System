@@ -1,33 +1,48 @@
 package assigning_informations;
 
 //import UserInput;
-import templates.Drinks;
+import java.util.ArrayList;
+import java.util.List;
+import templates.Menu;
 
 public class Beverages {
-    public Drinks drinksArray[] = new Drinks[4];
-    //public UserInput userIn = new UserInput();
+
+    private List<Menu> drinksList;
+
     private int numberLimit;
 
     public Beverages(){
         this.numberLimit = 0;
-
-        drinksArray[0] = new Drinks("None",0.00);
-        drinksArray[1] = new Drinks("Coca-Cola",30.00);
-        drinksArray[2] = new Drinks("Apple Juice",15.00);
-        drinksArray[3] = new Drinks("Pineapple Juice",12.00);
+        this.drinksList = new ArrayList<>();
+        beveragesInitialize();
+        
     }
 
-    public Beverages(int numberLimit){ 
-        this.numberLimit = numberLimit;
+    private void beveragesInitialize(){
+
+        addBeverage(new Menu("None",0.00));
+        addBeverage(new Menu("Coca-Cola",30.00));
+        addBeverage(new Menu("Coke Float", 50.00));
+        addBeverage(new Menu("Lemon Juice", 20.00));
+        addBeverage(new Menu("Apple Juice", 20.00));
+        addBeverage(new Menu("PineApple Juice", 20.00));
+        addBeverage(new Menu("Coffee", 30.00));
+        addBeverage(new Menu("Latte", 40.00));
+
+        this.numberLimit = drinksList.size();
     }
 
-    public Drinks returnDrinks(int num){ 
-        return drinksArray[num];
+    public void addBeverage(Menu drink){
+        this.drinksList.add(drink);
+    }
+
+    public Menu getDrinks(int num){ 
+        return drinksList.get(num);
     }
 
     public void displayDrinks(){
         int count = 0;
-        for(Drinks s : drinksArray){
+        for(Menu s : drinksList){
             System.out.print("["+count+"] ");
             System.out.println(s.getName() + " - Php "+s.getPrice());
             count++;
