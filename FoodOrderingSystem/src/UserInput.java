@@ -25,20 +25,20 @@ public class UserInput {
         return num;
     }
 
-    public boolean checkYesOrNo(){
+    public boolean checkYesOrNo(String msg1, String msg2){
         char confirmation;
         boolean isValid = false;
 
         while(!isValid){
             try {
-                System.out.print("Add Order (Y/N): ");
+                System.out.print(msg1);
                 confirmation = scan.next().charAt(0);
 
                 switch(Character.toLowerCase(confirmation)){
                     case 'y'-> {return true;}
                     case 'n'-> {return false;}
                     default ->{
-                    System.out.println("\t\t **Out of Selection!**"); 
+                    System.out.println(msg2); 
                     isValid = false;}
                 }
                 

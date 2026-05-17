@@ -13,7 +13,6 @@ public class OrderLogic {
     public void launch(){
         
         DecimalFormat df = new DecimalFormat("#,###.00");
-        MealSet[] mealset = new MealSet[4];
         UserInput userIn = new UserInput();
 
         boolean addOrderYORN = true;
@@ -24,37 +23,78 @@ public class OrderLogic {
         //gui.setupGUI();
         
         while(addOrderYORN) {
-            addOrderYORN = userIn.checkYesOrNo();
+            addOrderYORN = userIn.checkYesOrNo("Add Order (Y/N): ","\t\t **Out of Selection!**");
+
+            showOrderedMealSet(mealSetList);
+
             if(!addOrderYORN) break;
 
-            System.out.println("\n\t\t   Order Number #"+(orderNum+1));
-            mealset[orderNum] = new MealSet();
-            mealset[orderNum].addMeals();
-            mealset[orderNum].addDrinks();
-            mealset[orderNum].addSides();
+            System.out.println("\n\t\t   Order Number #"+(orderNum));
+            
+            double tempTotal = addNewOrder(orderNum);
 
-            //arrayList
-            //addMealSet(new MealSet());
-
-
-            System.out.println("Total: "+mealset[orderNum].getTotalAmount());
-            totalAmount += mealset[orderNum].getTotalAmount(); 
+            if(userIn.checkYesOrNo("Confirm Add Order (Y/N): ","INVALID CHOICE!")){
+                
+                totalAmount += tempTotal;
+                passCurrentOrderToMealSet(orderNum);
+            }
+            else{
+                removeMealSet(orderNum);
+                orderNum--;
+            }
 
             orderNum++;
         }
 
-        System.out.println("\n\nOrdered:");
-        for(int i=0 ; i<orderNum ;i++){
-            mealset[i].displayOrder();
-        }
+        //showOrderedMealSet(mealSetList);
+
         System.out.println("Total Amount: "+ df.format(totalAmount));
             
 
         //System.out.println("Hello");
     }
 
+    public double addNewOrder(int orderNum){
+        addMealSet(new MealSet());
+
+            MealSet currentOrder = this.mealSetList.get(orderNum);
+
+            currentOrder.addMeals();
+            currentOrder.addDrinks();
+            currentOrder.addSides();
+            currentOrder.addExtras();
+
+
+            System.out.println("Total: "+currentOrder.getTotalAmount());
+
+            return currentOrder.getTotalAmount();
+    }
+
     public void addMealSet(MealSet mealset){
         this.mealSetList.add(mealset);
+    }
+
+    public void removeMealSet(int orderNum){
+        this.mealSetList.remove(orderNum);
+    }
+
+    public void passCurrentOrderToMealSet(int orderNum){
+        MealSet currentOrder = this.mealSetList.get(orderNum);
+
+        currentOrder.passOrderedMealSetToStoreOrder(true);
+    }
+
+    public void showOrderedMealSet(List<MealSet> mealSet){
+        System.out.println("ORDER/S: \n");
+
+        int orderNum = 0;
+        for(MealSet m : mealSet){
+            System.out.print("#"+ orderNum + " - ");
+            m.displayOrder();
+            System.out.println();
+
+            orderNum++;
+        }
     }
 
 }

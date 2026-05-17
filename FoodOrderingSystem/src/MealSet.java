@@ -3,8 +3,11 @@ import assigning_informations.Beverages;
 import assigning_informations.Extras;
 import assigning_informations.Meals;
 import assigning_informations.Sides;
+import java.text.DecimalFormat;
 
 public class MealSet{
+    DecimalFormat dfAmount = new DecimalFormat("#,###.00");
+
     Beverages  beverages = new Beverages();
     Meals meal = new Meals();
     Sides sides = new Sides();
@@ -13,13 +16,33 @@ public class MealSet{
     UserInput userIn = new UserInput();
 
     private double totalAmount;
-    private String foodOrdered = "";
-    private String drinkOrdered = "";
-    private String sideOrdered = "";
+    public String emptyValue;
 
-    private double foodOrderedPrice = 0;
-    private double drinkOrderedPrice = 0;
-    private double sideOrderedPrice = 0;
+    private String foodOrdered;
+    private String drinkOrdered;
+    private String sideOrdered;
+    private String extraOrdered;
+
+    private double foodOrderedPrice;
+    private double drinkOrderedPrice;
+    private double sideOrderedPrice;
+    private double extraOrderedPrice;
+
+    public MealSet(){
+        this.emptyValue = "None";
+
+        this.foodOrdered = "";
+        this.drinkOrdered = "";
+        this.sideOrdered = "";
+        this.extraOrdered = "";
+
+        this.foodOrderedPrice = 0;
+        this.drinkOrderedPrice = 0;
+        this.sideOrderedPrice = 0;
+        this.extraOrderedPrice = 0;
+    }
+
+    public double getTotalAmount(){return this.totalAmount;}
 
     public void addMeals(){
         System.out.println("--------------------[ MEAL ]--------------------");
@@ -63,30 +86,54 @@ public class MealSet{
 
         int user = userIn.checkUserInputLessThanLimit(sides.getNumberLimit(),"Enter Selection: ","INVALID!");
 
-        this.sideOrderedPrice = extras.getExtra(user).getPrice();
-        this.sideOrdered = extras.getExtra(user).getName();
+        this.extraOrderedPrice = extras.getExtra(user).getPrice();
+        this.extraOrdered = extras.getExtra(user).getName();
 
         this.totalAmount += extras.getExtra(user).getPrice();
     }
 
     public boolean isFoodOrderedNull(){
-        return !this.foodOrdered.equals("None") && this.foodOrderedPrice == 0.00;
+        return !this.foodOrdered.equals(this.emptyValue);
     }
+
     public boolean isDrinkOrderedNull(){
-        return !this.drinkOrdered.equals("None");
+        return !this.drinkOrdered.equals(this.emptyValue);
     }
+
     public boolean isSideOrderedNull(){
-        return !this.sideOrdered.equals("None");
+        return !this.sideOrdered.equals(this.emptyValue);
+    }
+
+    public boolean isExtraOrderedNull(){
+        return !this.extraOrdered.equals(this.emptyValue);
     }
 
     public void displayOrder(){
 
-        System.out.println(isFoodOrderedNull());
+        if(isFoodOrderedNull()){
+        System.out.print(this.foodOrdered+" - [ Php "+dfAmount.format(this.foodOrderedPrice)+"] +c");
+        }
 
-        System.out.println(this.foodOrdered + "("+this.foodOrderedPrice+") + "+ 
-        this.drinkOrdered + "("+this.drinkOrderedPrice+") + " + 
-        this.sideOrdered + "("+this.sideOrderedPrice+") = Php " + getTotalAmount());
+        if(isDrinkOrderedNull()){
+        System.out.print(this.drinkOrdered+" - [ Php "+dfAmount.format(this.drinkOrderedPrice)+"] + ");
+        }
+
+        if(isSideOrderedNull()){
+        System.out.print(this.sideOrdered+" - [ Php "+dfAmount.format(this.sideOrderedPrice)+"] + ");
+        }
+
+        if(isExtraOrderedNull()){
+        System.out.print(this.extraOrdered+" - [ Php "+dfAmount.format(this.extraOrderedPrice)+"]: ");
+        }
+
+        //System.out.println(this.foodOrdered + " " + this.drinkOrdered + " " + this.sideOrdered + " " + this.extraOrdered);
+        System.out.println("Total = Php " + getTotalAmount());
+    }
+
+    public void passOrderedMealSetToStoreOrder(boolean isPass){
+        if(!isPass) return;
+
+        System.out.println();
     }
     
-    public double getTotalAmount(){return this.totalAmount;}
 }
