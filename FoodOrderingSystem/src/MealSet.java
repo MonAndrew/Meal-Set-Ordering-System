@@ -70,7 +70,13 @@ public class MealSet{
     }
 
     public boolean isFoodOrderedNull(){
-        return !this.foodOrdered.equals("None");
+        return !this.foodOrdered.equals("None") && this.foodOrderedPrice == 0.00;
+    }
+    public boolean isDrinkOrderedNull(){
+        return !this.drinkOrdered.equals("None");
+    }
+    public boolean isSideOrderedNull(){
+        return !this.sideOrdered.equals("None");
     }
 
     public void displayOrder(){
