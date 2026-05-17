@@ -111,7 +111,7 @@ public class MealSet{
     public void displayOrder(){
 
         if(isFoodOrderedNull()){
-        System.out.print(this.foodOrdered+" - [ Php "+dfAmount.format(this.foodOrderedPrice)+"] +c");
+        System.out.print(this.foodOrdered+" - [ Php "+dfAmount.format(this.foodOrderedPrice)+"] + ");
         }
 
         if(isDrinkOrderedNull()){

@@ -1,94 +1,85 @@
-package assigning_informations; 
+package assigning_informations;
 
 //import UserInput;
 
 import java.util.ArrayList;
-
 import java.util.List;
-
 import templates.Menu;
 
- 
+
 public class Beverages {
 
-    private List<Menu> drinksList;
+    private List<Menu> drinksList;
 
 
-    private int numberLimit;
+     private int numberLimit;
+
+    public Beverages(){
+
+        this.numberLimit = 0;
+
+        this.drinksList = new ArrayList<>();
+
+        beveragesInitialize();
+
+    }
 
 
-    public Beverages(){
+    private void beveragesInitialize(){
 
-        this.numberLimit = 0;
+        addBeverage(new Menu("None",0.00));
 
-        this.drinksList = new ArrayList<>();
+        addBeverage(new Menu("Coca-Cola",30.00));
 
-        beveragesInitialize();
+        addBeverage(new Menu("Coke Float", 50.00));
 
-    }
+        addBeverage(new Menu("Lemon Juice", 20.00));
 
- 
+        addBeverage(new Menu("Apple Juice", 20.00));
 
-    private void beveragesInitialize(){
+        addBeverage(new Menu("PineApple Juice", 20.00));
 
-        addBeverage(new Menu("None",0.00));
+        addBeverage(new Menu("Coffee", 30.00));
 
-        addBeverage(new Menu("Coca-Cola",30.00));
-
-        addBeverage(new Menu("Coke Float", 50.00));
-
-        addBeverage(new Menu("Lemon Juice", 20.00));
-
-        addBeverage(new Menu("Apple Juice", 20.00));
-
-        addBeverage(new Menu("PineApple Juice", 20.00));
-
-        addBeverage(new Menu("Coffee", 30.00));
-
-        addBeverage(new Menu("Latte", 40.00));
+        addBeverage(new Menu("Latte", 40.00));
 
         
-        this.numberLimit = drinksList.size();
+        this.numberLimit = drinksList.size();
 
-    }
+    }
 
- 
 
-    public void addBeverage(Menu drink){
+    public void addBeverage(Menu drink){
 
-        this.drinksList.add(drink);
+        this.drinksList.add(drink);
 
-    }
+    }
 
- 
 
-    public Menu getDrinks(int num){
+    public Menu getDrinks(int num){
 
-        return drinksList.get(num);
+        return drinksList.get(num);
 
-    }
+    }
 
- 
 
-    public void displayDrinks(){
+    public void displayDrinks(){
 
-        int count = 0;
+        int count = 0;
 
-        for(Menu s : drinksList){
+        for(Menu s : drinksList){
+            System.out.print("["+count+"] ");
+            System.out.println(s.getName() + " - Php "+s.getPrice());
 
-            System.out.print("["+count+"] ");
+            count++;
 
-            System.out.println(s.getName() + " - Php "+s.getPrice());
+        }
 
-            count++;
+    }
 
-        }
 
-    }
 
- 
-
-    public int getNumberLimit(){
+    public int getNumberLimit(){
         
         return this.numberLimit;
     
