@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class UserInput {
     public Scanner scan = new Scanner(System.in);
 
-    public int checkUserInputLessThanLimit(int numberLimit, String msg1, String msg2){
+    public int checkUserInputLessThanLimitOrZero(int numberLimit, String msg1, String msg2){
         int num = 0;
         boolean isValid = false;
 
@@ -13,7 +13,7 @@ public class UserInput {
             try {
                 System.out.print(msg1);
                 num = scan.nextInt();
-                if(num < numberLimit) return num;
+                if(num < numberLimit && num >= 0) return num;
                 else System.out.println("\t\t **Out of Selection!**");
                 
             } catch (InputMismatchException e) {
@@ -48,5 +48,31 @@ public class UserInput {
             }
         }
         return false;
+    }
+
+    public char checkUserInputForOption(String msg1, String msg2){
+        char character;
+        boolean isValid = false;
+
+        while(!isValid){
+            try {
+                System.out.print(msg1);
+                character = scan.next().charAt(0);
+
+                switch(Character.toLowerCase(character)){
+                    case 'a','r','s','c' -> {return character;}
+
+                    default -> {
+                    System.out.println(msg2); 
+                    isValid = false;}
+                }
+                
+            } catch (Exception e) {
+                System.out.println("INVALID!");
+                scan.next();
+            }
+        }
+
+        return 's';
     }
 }

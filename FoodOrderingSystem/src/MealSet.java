@@ -48,7 +48,7 @@ public class MealSet{
         System.out.println("--------------------[ MEAL ]--------------------");
         meal.displayFoods();
 
-        int user = userIn.checkUserInputLessThanLimit(meal.getNumberLimit(),"Enter Selection: ","INVALID!");
+        int user = userIn.checkUserInputLessThanLimitOrZero(meal.getNumberLimit(),"Enter Selection: ","INVALID!");
 
         this.foodOrderedPrice = meal.getFood(user).getPrice();
         this.foodOrdered = meal.getFood(user).getName();
@@ -60,7 +60,7 @@ public class MealSet{
         System.out.println("-------------------[ DRINKS ]---------------------");
         beverages.displayDrinks();
 
-        int user = userIn.checkUserInputLessThanLimit(beverages.getNumberLimit(),"Enter Selection: ","INVALID!");
+        int user = userIn.checkUserInputLessThanLimitOrZero(beverages.getNumberLimit(),"Enter Selection: ","INVALID!");
 
         this.drinkOrderedPrice = beverages.getDrinks(user).getPrice();
         this.drinkOrdered = beverages.getDrinks(user).getName();
@@ -72,7 +72,7 @@ public class MealSet{
         System.out.println("-------------------[ SIDES ]---------------------");
         sides.displaySides();
 
-        int user = userIn.checkUserInputLessThanLimit(sides.getNumberLimit(),"Enter Selection: ","INVALID!");
+        int user = userIn.checkUserInputLessThanLimitOrZero(sides.getNumberLimit(),"Enter Selection: ","INVALID!");
 
         this.sideOrderedPrice = sides.getSides(user).getPrice();
         this.sideOrdered = sides.getSides(user).getName();
@@ -84,7 +84,7 @@ public class MealSet{
         System.out.println("-------------------[ EXTRAS ]---------------------");
         extras.displayExtras();
 
-        int user = userIn.checkUserInputLessThanLimit(sides.getNumberLimit(),"Enter Selection: ","INVALID!");
+        int user = userIn.checkUserInputLessThanLimitOrZero(sides.getNumberLimit(),"Enter Selection: ","INVALID!");
 
         this.extraOrderedPrice = extras.getExtra(user).getPrice();
         this.extraOrdered = extras.getExtra(user).getName();

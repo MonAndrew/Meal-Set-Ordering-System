@@ -25,6 +25,7 @@ public class Meals {
         addMeal(new Menu("Double Combo Burger", 70.00));
         addMeal(new Menu("Buffalo Wings Solo w/ Rice", 120.00));
         addMeal(new Menu("Buffalo Wings Platter", 220.00));
+        
  
         this.numberLimit = foodList.size();
     }

@@ -28,7 +28,7 @@ public class GUI {
         panelMain.setBackground(Color.magenta);
 
         button.setBounds(10,10,100,40);
-        button2.setBounds(120,10,100,40);
+        button2.setBounds((button.getX() + 10 + button.getWidth()),10,100,40);
 
         //button.addActionListener();
 
