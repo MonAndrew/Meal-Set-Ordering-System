@@ -1,8 +1,11 @@
-
+import javax.swing.SwingUtilities;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
-        OrderLogic process = new OrderLogic();
-        process.launch();
+
+    public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(()-> new OrderGUI());
+
     }
+
 }
